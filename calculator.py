@@ -376,23 +376,38 @@ buttons = [
     ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
     ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
     ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
-    ('0', 4, 0), ('C', 4, 1), ('=', 4, 2), ('+', 4, 3),
+    ('C', 4, 0), ('0', 4, 1), ('=', 4, 2), ('+', 4, 3),
 ]
 
-for (text, row, col) in buttons:
-    button = Button(window, text=text, padx=20, pady=20, font=('Helvetica', 16),
-                    command=lambda t=text: button_click(t), fg= 'white',bg = '#008080', 
-                    activebackground = 'white', activeforeground='#008080', )
+def create_button(text, row, col):
+    # Change color for '=' button
+    if text == '=':
+        button = Button(window, text=text, padx=20, pady=20, font=('Helvetica', 16),
+                        command=lambda t=text: button_click(t), fg='white', bg='#F28C28',
+                        activebackground='#FF5733', activeforeground='white')
+    elif text == 'C':
+        button = Button(window, text=text, padx=20, pady=20, font=('Helvetica', 16),
+                        command=lambda t=text: button_click(t), fg='white', bg='#FFBF00',
+                        activebackground='#FF5733', activeforeground='white')    
+    else:
+        button = Button(window, text=text, padx=20, pady=20, font=('Helvetica', 16),
+                        command=lambda t=text: button_click(t), fg='white', bg='#5A5A5A',
+                        activebackground='white', activeforeground='#5A5A5A')
     button.grid(row=row, column=col)
 
+# Create buttons based on the buttons list
+for (text, row, col) in buttons:
+    create_button(text, row, col)
+
+
 ans_button = Button(window, text="ANS", padx=40, pady=20, font=('Helvetica', 16),
-                    command=lambda: button_click('ANS'), fg='white', bg='#008080',
-                    activebackground='white', activeforeground='#008080')
+                    command=lambda: button_click('ANS'), fg='white', bg='#5A5A5A',
+                    activebackground='white', activeforeground='#5A5A5A')
 ans_button.grid(row=5, column=0, columnspan=2)  # Set columnspan to 2 for 'ANS' button
 
 del_button = Button(window, text="DEL", padx=40, pady=20, font=('Helvetica', 16),
-                    command=lambda: button_click('DEL'), fg='white', bg='#008080',
-                    activebackground='white', activeforeground='#008080')
+                    command=lambda: button_click('DEL'), fg='white', bg='#5A5A5A',
+                    activebackground='white', activeforeground='#5A5A5A')
 del_button.grid(row=5, column=2, columnspan=2)  # Set columnspan to 2 for 'DEL' button
 
 
@@ -457,38 +472,38 @@ def memory_recall():
             entry.delete(0, END)
             entry.insert(END, str(prev_answers[-answer_index]))
             prev_answers = prev_answers[:-1]
-
+    
 currency_converter_button = Button(window, text="CC", padx=12, pady=20, 
                                    font=('Helvetica', 16), command=open_currency_converter,
-                                   fg = 'white', bg = '#008080', activebackground='white', activeforeground= '#008080')
+                                   fg = 'white', bg = '#5A5A5A', activebackground='white', activeforeground= '#5A5A5A')
 currency_converter_button.grid(row=6, column=0, )
 
 temperature_converter_button = Button(window, text="TC", padx=12, pady=20,
                                       font=('Helvetica', 16), command=open_temperature_converter,
-                                      fg='white', bg='#008080', activebackground='white', activeforeground='#008080')
+                                      fg='white', bg='#5A5A5A', activebackground='white', activeforeground='#5A5A5A')
 temperature_converter_button.grid(row=6, column=1, )
 
 distance_converter_button = Button(window, text="DC", padx=12, pady=20,
                                       font=('Helvetica', 16), command=open_distance_converter,
-                                      fg='white', bg='#008080', activebackground='white', activeforeground='#008080')
+                                      fg='white', bg='#5A5A5A', activebackground='white', activeforeground='#5A5A5A')
 distance_converter_button.grid(row=6, column=2, )
 
 compound_interest_button = Button(window, text="CI", padx=12, pady=20,
                                   font=('Helvetica', 16), command=open_compound_interest_calculator,
-                                  fg='white', bg='#008080', activebackground='white', activeforeground='#008080')
+                                  fg='white', bg='#5A5A5A', activebackground='white', activeforeground='#5A5A5A')
 compound_interest_button.grid(row=6, column=3, )
 memory_store_button = Button(window, text="MS", padx=10, pady=20,
-                    font=('Helvetica', 16), command=memory_store,fg='white', bg='#008080', 
-                    activebackground='white', activeforeground='#008080')
+                    font=('Helvetica', 16), command=memory_store,fg='white', bg='#5A5A5A', 
+                    activebackground='white', activeforeground='#5A5A5A')
 memory_store_button.grid(row = 8, column = 0)
 
 memory_recall_button = Button(window, text="MR", padx=10, pady=20,
-                    font=('Helvetica', 16), command=memory_recall,fg='white', bg='#008080', 
-                    activebackground='white', activeforeground='#008080')
+                    font=('Helvetica', 16), command=memory_recall,fg='white', bg='#5A5A5A', 
+                    activebackground='white', activeforeground='#5A5A5A')
 memory_recall_button.grid(row = 8, column = 1)
 constant_button = Button(window, text="const", padx=32, pady=20,
-                    font=('Helvetica', 16), command=const_window,fg='white', bg='#008080', 
-                    activebackground='white', activeforeground='#008080')
+                    font=('Helvetica', 16), command=const_window,fg='white', bg='#5A5A5A', 
+                    activebackground='white', activeforeground='#5A5A5A')
 constant_button.grid(row = 8, column = 2,columnspan=2)
 
 window.mainloop()
